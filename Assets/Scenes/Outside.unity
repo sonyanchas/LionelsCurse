@@ -13142,6 +13142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886ed0a8c6334460c8525870f521fc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: CutScene1
   Speed: 5
   MinX: -15.61
   MinY: -8.7

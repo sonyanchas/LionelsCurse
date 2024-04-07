@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class main : MonoBehaviour
 {
+    public string sceneName;
     [SerializeField] float Speed;
     [SerializeField] float MinX = 0f;
     [SerializeField] float MinY = 0f;
@@ -85,6 +87,11 @@ public class main : MonoBehaviour
             animator.SetBool("left", false);
             animator.SetBool("up", false);
             animator.SetBool("right", false);
+        }
+
+        if (transform.position.x >= 11.46f && transform.position.y >= 4.15)
+        {
+            SceneManager.LoadScene(sceneName);
         }
 
     }
