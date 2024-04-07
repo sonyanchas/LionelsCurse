@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class main : MonoBehaviour
 {
     public string sceneName;
+    public TextMeshProUGUI messageText; // Reference to the UI Text component
     [SerializeField] float Speed;
     [SerializeField] float MinX = 0f;
     [SerializeField] float MinY = 0f;
@@ -93,6 +94,32 @@ public class main : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName);
         }
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Get the mouse position in the game world
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = 0f; // Ensure the z-coordinate is appropriate for 2D games
 
+                // Perform a collision check at the mouse position
+                Collider2D hitCollider = Physics2D.OverlapPoint(mousePos);
+
+                // If there's a collider at the mouse position, destroy the object and display a message
+                if (hitCollider != null)
+                {
+                    Destroy(hitCollider.gameObject);
+                    messageText.text = "You've collected an artifact!!";
+            }
+            StartCoroutine(HideMessageAfterDelay(1f));
+        }
     }
 }
+
+// Coroutine to hide the message after a delay
+private IEnumerator HideMessageAfterDelay(float delay)
+{
+    yield return new WaitForSeconds(delay);
+    messageText.text = ""; // Empty the text to hide the message
+}
+     }
+ 
