@@ -6,6 +6,10 @@ using UnityEngine;
 public class main : MonoBehaviour
 {
     [SerializeField] float Speed;
+    [SerializeField] float MinX = 0f;
+    [SerializeField] float MinY = 0f;
+    [SerializeField] float MaxX = 0f;
+    [SerializeField] float MaxY = 0f;
     Animator animator;
     SpriteRenderer spriteRenderer;
 
@@ -18,11 +22,30 @@ public class main : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
+
         animator.SetBool("left", false);
         animator.SetBool("up", false);
         animator.SetBool("right", false);
         animator.SetBool("down", false);
+
+        if (transform.position.y > MaxY)
+        {
+            transform.position = new Vector3(transform.position.x, MaxY, 0f);
+        }
+        if (transform.position.y < MinY)
+        {
+            transform.position = new Vector3(transform.position.x, MinY, 0f);
+        }
+        if (transform.position.x > MaxX)
+        {
+            transform.position = new Vector3(MaxX, transform.position.y, 0f);
+        }
+        if (transform.position.x < MinX)
+        {
+            transform.position = new Vector3(MinX, transform.position.y, 0f);
+        }
         //right arrow controls
         if (Input.GetKey(KeyCode.D))
         {
@@ -63,5 +86,6 @@ public class main : MonoBehaviour
             animator.SetBool("up", false);
             animator.SetBool("right", false);
         }
+
     }
 }
