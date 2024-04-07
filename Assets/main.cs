@@ -19,6 +19,10 @@ public class main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("left", false);
+        animator.SetBool("up", false);
+        animator.SetBool("right", false);
+        animator.SetBool("down", false);
         //right arrow controls
         if (Input.GetKey(KeyCode.D))
         {
